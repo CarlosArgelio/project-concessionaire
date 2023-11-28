@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from 'antd';
 import { MdLocalOffer } from "react-icons/md";
 import { CardsImage } from '../../assets';
+import { ButtonSeller } from '../ButtonSeller';
 
 function CardConcessionaire({ stock, model, color, transmision, price, offer, seller }: any) {
 
@@ -19,6 +20,8 @@ function CardConcessionaire({ stock, model, color, transmision, price, offer, se
         <p>{`Precio: $${price}`}</p>
         <p>{`Vendedor: ${seller}`}</p>
         { offer && ( <p>Oferta: <MdLocalOffer /> </p>) }
+        
+        <ButtonSeller />
       </Card>    
     </>
   )
