@@ -17,7 +17,7 @@ function CardConcessionaire({ stock, model, color, transmision, price, offer }: 
     >
         <p>{`Modelo: ${model}`}</p>
         <p>{`Precio: $${price}`}</p>
-        <p>Oferta: { offer && (<MdLocalOffer />) }</p>
+        { offer && ( <p>Oferta: <MdLocalOffer /> </p>) }
       </Card>    
     </>
   )
