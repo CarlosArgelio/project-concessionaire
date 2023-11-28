@@ -17,9 +17,9 @@ const generateCard = () => ({
         offer: Math.floor(Math.random() * 10) == 0 ? true : false,
     })
 
-const generateManyCards = () => {
+const generateManyCards = (limit: number) => {
     const carsList = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < limit; i++) {
         carsList.push(generateCard());
     }
     return carsList;

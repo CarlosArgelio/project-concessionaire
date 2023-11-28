@@ -1,11 +1,16 @@
 import React from 'react';
-import CardConcessionaire from './components/CardConcessionaire';
+import { CardListConcessionaire } from './components/CardListConcessionaire';
+import 'antd/dist/reset.css';
+import './App.css';
 
 
 function App() {
   return (
     <>
-      <CardConcessionaire /> 
+      <div className='App'>
+
+      <CardListConcessionaire />
+      </div>
     </>
   )
 }
