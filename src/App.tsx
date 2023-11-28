@@ -1,8 +1,11 @@
+import React from 'react';
+import CardConcessionaire from './components/CardConcessionaire';
+
 
 function App() {
   return (
     <>
-      <div>Hello World</div>      
+      <CardConcessionaire /> 
     </>
   )
 }
