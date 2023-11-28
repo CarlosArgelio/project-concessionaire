@@ -3,7 +3,7 @@ import { Card } from 'antd';
 import { MdLocalOffer } from "react-icons/md";
 import { CardsImage } from '../../assets';
 
-function CardConcessionaire({ stock, model, color, transmision, price, offer }: any) {
+function CardConcessionaire({ stock, model, color, transmision, price, offer, seller }: any) {
 
   return (
     <>
@@ -17,6 +17,7 @@ function CardConcessionaire({ stock, model, color, transmision, price, offer }: 
     >
         <p>{`Modelo: ${model}`}</p>
         <p>{`Precio: $${price}`}</p>
+        <p>{`Vendedor: ${seller}`}</p>
         { offer && ( <p>Oferta: <MdLocalOffer /> </p>) }
       </Card>    
     </>

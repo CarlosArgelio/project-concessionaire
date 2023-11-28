@@ -1,11 +1,8 @@
-const stock = ['Toyota', 'Chevrolet', 'Ford', 'Renault', 'Chery', 'Fiat', 
-                'Peugeot', 'Jeep', 'Seat', 'Hyundai', 'Kia', 'Mazda'];
-
+const stock = ['Toyota', 'Chevrolet', 'Ford', 'Renault', 'Chery', 'Fiat', 'Peugeot', 'Jeep', 'Seat', 'Hyundai', 'Kia', 'Mazda'];
 const models = ["Sedan", "SUV", "Hatchback", "Crossover", "Pickup", "Compacto"];
-
 const colors = ["Rojo", "Azul", "Negro", "Blanco", "Gris", "Verde"];
-
 const transmisions = ["Automática", "Manual"];
+const Sellers = ["Carlos", "Betania", "Juan", "Hisiu", "Jeremy"];
 
 
 const generateCard = () => ({
@@ -14,7 +11,8 @@ const generateCard = () => ({
         color: colors[Math.floor(Math.random() * colors.length)],
         transmision: transmisions[Math.floor(Math.random() * transmisions.length)],
         price: Math.floor(Math.random() * 100000),
-        offer: Math.floor(Math.random() * 10) == 0 ? true : false,
+        offer: Math.floor(Math.random() * 10) in [6, 7, 8, 9, 10] ? true : false,
+        seller: Sellers[Math.floor(Math.random() * Sellers.length)]
     })
 
 const generateManyCards = (limit: number) => {
