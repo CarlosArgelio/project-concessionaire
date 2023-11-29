@@ -31,16 +31,6 @@ const FormComponent: React.FC<Prop> = (props) => {
   const [, setPayMethod] = useState<PaymentMethod | ''>('');
   const [, setModePay] = useState<ModePay | ''>('');
   const [price] = useState<number>(0);
-  const [onPorcentualState, setOnPorcentualState] = useState<number>(0);
-
-  const onPorcentual = () => {
-    if ( 'porcentual' in props.offert && typeof props.offert.porcentual === 'number' ) {
-        setOnPorcentualState(props.offert.porcentual);
-        return props.offert.porcentual;
-    } else {
-        return 0;
-    }
-  }
 
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(size);
@@ -105,11 +95,12 @@ const FormComponent: React.FC<Prop> = (props) => {
     
       <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}>
         <label>Subtotal</label>
+
         {
-            onPorcentual() ? (
+            (props.offert.offert && typeof props.offert.offert.porcentual === 'number') ? (
                 <>
-                    <label>Oferta: {onPorcentualState}%</label>
-                    <InputNumber disabled={true} value={onSubTotal(price, onPorcentualState)} />
+                    <label>Oferta: {props.offert.offert.porcentual}%</label>
+                    <InputNumber disabled={true} value={onSubTotal(price, props.offert.offert.porcentual)} />
                 </>
             ) : (
                 <InputNumber disabled={true} value={onSubTotal(price)} />
