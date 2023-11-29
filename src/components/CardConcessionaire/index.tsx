@@ -2,26 +2,28 @@ import React from 'react';
 import { Card } from 'antd';
 import { MdLocalOffer } from "react-icons/md";
 import { CardsImage } from '../../assets';
-import { ButtonSeller } from '../ButtonSeller';
+import ModalComponent from '../Modal';
 
-function CardConcessionaire({ stock, model, color, transmision, price, offer, seller }: any) {
+function CardConcessionaire(props: any) {
 
   return (
     <>
       <Card 
-        title={`${stock}`}
+        title={`${props.stock}`}
         bordered={false} 
         style={
             { width: 300, boxShadow: '0 0 10px #ccc' }
             }
         cover={<img alt="example" src={CardsImage.CardsImage.Ford} />}
     >
-        <p>{`Modelo: ${model}`}</p>
-        <p>{`Precio: $${price}`}</p>
-        <p>{`Vendedor: ${seller}`}</p>
-        { offer && ( <p>Oferta: <MdLocalOffer /> </p>) }
+        <p>{`Modelo: ${props.model}`}</p>
+        <p>{`Precio: $${props.price}`}</p>
+        <p>{`Vendedor: ${props.seller}`}</p>
+        { props.offert && ( <p>Oferta: <MdLocalOffer /> </p>) }
         
-        <ButtonSeller />
+        <ModalComponent 
+          {...props}
+        />
       </Card>    
     </>
   )
