@@ -1,4 +1,3 @@
-import React from 'react';
 import { CardListConcessionaire } from './components/CardListConcessionaire';
 import 'antd/dist/reset.css';
 import './App.css';

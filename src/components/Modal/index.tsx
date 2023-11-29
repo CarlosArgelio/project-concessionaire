@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Flex, Modal } from 'antd';
-import FormComponent from '../FormConcessionaire';
+import { FormComponent } from '../FormConcessionaire';
 
 const ModalComponent: React.FC = (props: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

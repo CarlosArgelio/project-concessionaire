@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Form,
@@ -8,13 +8,39 @@ import {
 } from 'antd';
 
 type SizeType = Parameters<typeof Form>[0]['size'];
+type PaymentMethod = 'paypal' | 'binance' | 'Pago movil' | 'transeferencia';
+type ModePay = 'Al contado' | 'Financiamiento';
+type OffertType = {
+    offert: {
+        porcentual: number;
+        offert: boolean;
+    };
+} | {
+    offert: false;
+}
 
-const FormComponent: React.FC = (props: ReactNode) => {
+type Prop = {
+    seller: string;
+    offert: OffertType;
+    price: number;
+}
+
+const FormComponent: React.FC<Prop> = (props) => {
   const [componentSize, setComponentSize] = useState<SizeType | 'default'>('default');
-  const [seller , setSeller] = useState<string>(`${props.seller}`);
-  const [payMethod, setPayMethod] = useState<string>('');
-  const [modePay, setModePay] = useState<string[]>('');
-  const [price, setPrice] = useState<number>(props.price);
+  const [seller] = useState<string>(`${props.seller}`);
+  const [, setPayMethod] = useState<PaymentMethod | ''>('');
+  const [, setModePay] = useState<ModePay | ''>('');
+  const [price] = useState<number>(0);
+  const [onPorcentualState, setOnPorcentualState] = useState<number>(0);
+
+  const onPorcentual = () => {
+    if ( 'porcentual' in props.offert && typeof props.offert.porcentual === 'number' ) {
+        setOnPorcentualState(props.offert.porcentual);
+        return props.offert.porcentual;
+    } else {
+        return 0;
+    }
+  }
 
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(size);
@@ -29,15 +55,15 @@ const FormComponent: React.FC = (props: ReactNode) => {
     return subTotal;
   }
 
-  const onSubmit = (e) => {
-  console.log("🚀 ~ file: index.tsx:31 ~ onSubmit ~ e:", e.target.value)
+  const onSubmit = (e: object) => {
+    console.log("🚀 ~ file: index.tsx:31 ~ onSubmit ~ e:", e);
   }
 
-  const PayMethodOption = (e) => {
+  const PayMethodOption = (e: PaymentMethod) => {
       setPayMethod(e);
   }
 
-  const ModeMethodOptions = (e) => {
+  const ModeMethodOptions = (e: ModePay) => {
     setModePay(e)
   }
 
@@ -76,13 +102,20 @@ const FormComponent: React.FC = (props: ReactNode) => {
         <label>Total</label>
         <InputNumber disabled={true} value={price}/>
       </Form.Item>
-
+    
       <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}>
         <label>Subtotal</label>
-        <InputNumber disabled={true} value={onSubTotal(price, props.offert.porcentual)}/>
+        {
+            onPorcentual() ? (
+                <>
+                    <label>Oferta: {onPorcentualState}%</label>
+                    <InputNumber disabled={true} value={onSubTotal(price, onPorcentualState)} />
+                </>
+            ) : (
+                <InputNumber disabled={true} value={onSubTotal(price)} />
+            )
+        }
       </Form.Item>
-
-      {props.offert ? (<p>Oferta: {props.offert.porcentual}%</p>) : null}
 
       <Form.Item >
         <Button type="primary" htmlType="submit">
@@ -96,4 +129,4 @@ const FormComponent: React.FC = (props: ReactNode) => {
 const paymentMethods = ['paypal', 'binance', 'Pago movil', 'transeferencia'];
 const modePayment = ['Al contado', 'Financiamiento'];
 
-export default FormComponent;
+export { FormComponent };

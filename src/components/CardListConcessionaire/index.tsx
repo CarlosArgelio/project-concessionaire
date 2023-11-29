@@ -1,4 +1,3 @@
-import React from 'react'
 import { generateManyCards } from "../../data/CardsData";
 import CardConcessionaire from "../CardConcessionaire";
 import "./CardList.css";

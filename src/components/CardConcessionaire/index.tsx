@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card } from 'antd';
 import { MdLocalOffer } from "react-icons/md";
 import { CardsImage } from '../../assets';
